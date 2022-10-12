@@ -1,8 +1,8 @@
 # Virus Scanner Microservices
 
-This repository contains a set of docker container orchestrated via docker-compose. Each container is a antivirus microservice accepting files to scan over HTTP.
+This repository contains a set of docker container orchestrated via docker-compose. Each container is an antivirus microservice accepting files to scan over HTTP.
 
-All container are based of the plugins from the discontinued/unmantained https://github.com/maliceio/ project. As far as I could, I fixed all services however most container run on obsolete ubuntu and Go versions. 
+All containers are based off the plugins from the discontinued/unmantained https://github.com/maliceio/ project. As far as I could, I fixed all services, however most containers run on obsolete Ubuntu and Go versions. 
 I hope to bump these versions some day, but they should work for now.
 
 ## Install
