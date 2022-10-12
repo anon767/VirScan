@@ -1,0 +1,22 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
+.glide/
+
+*.bu
+*.tar
+.vagrant
+befb88b89c2eb401900a68e9f5b78764203f2b48264fcc3f7121bf04a57fd408
+.circleci/build_num
+tests/malware
+tests/not.malware

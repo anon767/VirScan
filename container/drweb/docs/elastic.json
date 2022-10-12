@@ -1,0 +1,58 @@
+{
+  "took": 41,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 2,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "8e47vGUBZmA985oNGWMd",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "drweb": {
+                "Database": "7208559",
+                "Engine": "7.00.33.06080",
+                "Infected": true,
+                "Result": "BackDoor.Dizhi",
+                "Updated": "20180909",
+                "markdown": "#### Dr.WEB\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | BackDoor.Dizhi | 7.00.33.06080 | 20180909 |\n"
+              }
+            }
+          },
+          "scan_date": "2018-09-09T02:48:34.318915146Z"
+        }
+      },
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "8u47vGUBZmA985oNQ2M4",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "drweb": {
+                "Database": "7208559",
+                "Engine": "7.00.33.06080",
+                "Infected": false,
+                "Result": "",
+                "Updated": "20180909",
+                "markdown": "#### Dr.WEB\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 7.00.33.06080 | 20180909 |\n"
+              }
+            }
+          },
+          "scan_date": "2018-09-09T02:48:45.111462255Z"
+        }
+      }
+    ]
+  }
+}

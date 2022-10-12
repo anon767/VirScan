@@ -1,0 +1,56 @@
+{
+  "took": 147,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 2,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "yayR02gBbc4TJqb1htdW",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "bitdefender": {
+                "engine": "7.141118",
+                "infected": true,
+                "markdown": "#### Bitdefender\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Backdoor.Lecna.AB | 7.141118 | 20190209 |\n",
+                "result": "Backdoor.Lecna.AB",
+                "updated": "20190209"
+              }
+            }
+          },
+          "scan_date": "2019-02-09T18:42:36.222332Z"
+        }
+      },
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "yqyR02gBbc4TJqb1o9df",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "bitdefender": {
+                "engine": "7.141118",
+                "infected": false,
+                "markdown": "#### Bitdefender\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 7.141118 | 20190209 |\n",
+                "result": "",
+                "updated": "20190209"
+              }
+            }
+          },
+          "scan_date": "2019-02-09T18:42:43.6768961Z"
+        }
+      }
+    ]
+  }
+}

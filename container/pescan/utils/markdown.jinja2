@@ -1,0 +1,75 @@
+### pescan
+
+{% if exe is not none -%}
+{% if exe.get('info') -%}
+#### Header
+
+- **Target Machine:** `{{ exe['info'].get('machine_type') }}`
+{% if exe['info'].get('compiletime') -%}
+- **Compilation Timestamp:** `{{ exe['info']['compiletime'].get('datetime') }}`
+{% endif -%}
+- **Entry Point:** `{{ exe['info'].get('entrypoint') }}`
+- **Contained Sections:** `{{ exe['info'].get('number_of_sections') }}`
+{% endif %}
+{% if exe.get('sections') -%}
+#### Sections
+
+| Name | Virtual Address | Virtual Size | Raw Size | Entropy | MD5 |
+|------|-----------------|--------------|----------|---------|-----|
+{% for sec in exe.get('sections') -%}
+| {{ sec.get('name') }} | {{ sec.get('rva') }} | {{ sec.get('virtual_size') }} | {{ sec.get('raw_data_size') }} | {{ "%.2f"|format(sec.get('entropy')) }} | {{ sec.get('md5') }} |
+{% endfor -%}
+{%- endif %}
+{% if exe.get('imports') -%}
+#### Imports
+{% for dll in exe.get('imports') -%}
+    {% for dll_name, imports in dll.items() %}
+##### `{{ dll_name }}`
+{% for import in imports -%}
+ - {{ import.get('name') }}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
+{%- endif %}
+{% if exe.get('exports') -%}
+#### Exports
+{% for dll in exe.get('exports') -%}
+    {% for dll_name, exports in dll.items() %}
+##### `{{ dll_name }}`
+{% for export in exports -%}
+ - {{ export.get('name') }}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
+{%- endif %}
+{% if exe.get('resources') -%}
+#### Resources
+
+| SHA-256 | Size | Entropy | File Type | Type | Language |
+|---------|------|---------|-----------|------|----------|
+{% for res in exe.get('resources') -%}
+| {{ res.get('sha256') }} | {{ res.get('size') }} | {{ "%.2f"|format(res.get('entropy')) }} | {{ res.get('filetype') }} | {{ res.get('name') }} | {{ res.get('language_desc') }} |
+{% endfor -%}
+{%- endif %}
+{% if exe.get('resource_versioninfo') -%}
+#### File Version Information
+
+ - **Copyright:** `{{ exe['resource_versioninfo'].get('legalcopyright')  }}`
+ - **Product:** `{{ exe['resource_versioninfo'].get('productname') }}`
+ - **Description:** `{{ exe['resource_versioninfo'].get('file_description') }}`
+ - **Original Name:** `{{ exe['resource_versioninfo'].get('original_filename') }}`
+ - **Internal Name:** `{{ exe['resource_versioninfo'].get('internalname') }}`
+ - **File Version:** `{{ exe['resource_versioninfo'].get('fileversion') }}`
+{%- endif %}
+{% if exe.get('signature') %}
+#### Signature Info
+##### Signature Verification
+> {{ exe['signature'].get('heuristic') }}
+{%- endif %}
+{% if exe.get('peid') %}
+#### PEiD
+{% for peid in exe.get('peid') -%}
+ - `{{ peid }}`
+{% endfor -%}
+{%- endif %}
+{%- endif %}

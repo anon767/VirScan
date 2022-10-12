@@ -1,0 +1,28 @@
+toml==0.9.4
+click>=6.0.0,<7.0.0
+elasticsearch>=6.0.0,<7.0.0
+
+Jinja2==2.10
+Flask==1.0.2
+Werkzeug==0.14.1
+requests>=2.20.0
+
+cffi
+pyasn1==0.4.4
+pyasn1-modules==0.2.2
+pycparser==2.14
+
+bitstring
+
+certvalidator
+asn1crypto
+oscrypto
+pytz
+pathlib2
+
+git+https://github.com/dlitz/pycrypto.git@v2.7a1#egg=pycrypto
+git+https://github.com/erocarrera/pefile.git@v2018.8.8#egg=pefile
+git+https://github.com/jdval/signify.git#egg=signify
+git+https://github.com/sebdraven/verify-sigs.git
+# git+https://github.com/smarnach/pyexiftool.git
+# git+https://github.com/ahupp/python-magic.git

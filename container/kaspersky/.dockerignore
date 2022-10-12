@@ -1,0 +1,17 @@
+# Ignore .git folder
+.git*
+.gitignore
+
+.circleci*
+.vscode*
+docs*
+vendor*
+tests*
+install*
+.vagrant*
+
+*.md
+*.md.bu
+LICENSE
+Makefile
+# *.key

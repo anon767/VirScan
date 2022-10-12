@@ -1,0 +1,66 @@
+{
+  "took": 46,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 2,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "f-w31WgBUJoNM2QzrIOw",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "fsecure": {
+                "database": "2019-02-09_04",
+                "engine": "11.10 build 68",
+                "infected": true,
+                "markdown": "#### F-Secure\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Worm.WORM/Rbot.Gen | 11.10 build 68 | 20190210 |\n",
+                "result": "Worm.WORM/Rbot.Gen",
+                "results": {
+                  "aquarius": "Worm.WORM/Rbot.Gen",
+                  "fse": ""
+                },
+                "updated": "20190210"
+              }
+            }
+          },
+          "scan_date": "2019-02-10T02:23:42.239661375Z"
+        }
+      },
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "gOw31WgBUJoNM2Qz7YPn",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "fsecure": {
+                "database": "2019-02-09_04",
+                "engine": "11.10 build 68",
+                "infected": false,
+                "markdown": "#### F-Secure\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 11.10 build 68 | 20190210 |\n",
+                "result": "",
+                "results": {
+                  "aquarius": "",
+                  "fse": ""
+                },
+                "updated": "20190210"
+              }
+            }
+          },
+          "scan_date": "2019-02-10T02:23:58.948771264Z"
+        }
+      }
+    ]
+  }
+}

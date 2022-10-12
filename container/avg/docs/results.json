@@ -1,0 +1,9 @@
+{
+  "avg": {
+    "infected": true,
+    "result": "Found Win32/DH{CGE?}",
+    "engine": "13.0.3114",
+    "database": "4793/15883",
+    "updated": "20180814"
+  }
+}

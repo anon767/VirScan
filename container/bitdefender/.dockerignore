@@ -1,0 +1,15 @@
+# Ignore .git folder
+.git*
+.gitignore
+
+.circleci*
+docs*
+vendor*
+tests*
+
+README.md
+LICENSE
+CHANGELOG.md
+circle.yml
+Makefile
+results.json

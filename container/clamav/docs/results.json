@@ -1,0 +1,10 @@
+{
+  "clamav": {
+    "infected": true,
+    "result": "Win.Trojan.Backspace-1",
+    "engine": "0.100.1",
+    "known": "6632715",
+    "updated": "20180903",
+    "error": ""
+  }
+}

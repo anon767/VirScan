@@ -1,0 +1,8 @@
+{
+  "comodo": {
+    "infected": true,
+    "result": "Backdoor.Win32.Lecna.AB",
+    "engine": "1.1",
+    "updated": "20180906"
+  }
+}

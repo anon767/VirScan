@@ -1,0 +1,58 @@
+{
+  "took": 63,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 2,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "llWMxmUBDwVwmhBzzymA",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "avg": {
+                "database": "4793/15883",
+                "engine": "13.0.3114",
+                "infected": true,
+                "markdown": "#### AVG\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Found Win32/DH{CGE?} | 13.0.3114 | 20180814 |\n",
+                "result": "Found Win32/DH{CGE?}",
+                "updated": "20180814"
+              }
+            }
+          },
+          "scan_date": "2018-09-11T02:54:01.593697203Z"
+        }
+      },
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "l1WNxmUBDwVwmhBzGSki",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "avg": {
+                "database": "4793/15883",
+                "engine": "13.0.3114",
+                "infected": false,
+                "markdown": "#### AVG\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 13.0.3114 | 20180814 |\n",
+                "result": "",
+                "updated": "20180814"
+              }
+            }
+          },
+          "scan_date": "2018-09-11T02:54:20.448515953Z"
+        }
+      }
+    ]
+  }
+}

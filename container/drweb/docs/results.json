@@ -1,0 +1,9 @@
+{
+  "drweb": {
+    "infected": true,
+    "result": "BackDoor.Dizhi",
+    "engine": "7.00.34.11020",
+    "database": "7472573",
+    "updated": "20190210"
+  }
+}

@@ -1,0 +1,87 @@
+version: '3.4'
+
+services:
+  windowsdefender:
+    image: malice/windows-defender
+    command: web
+    ports:
+      - "3993:3993"
+  mcaffee:
+    image: malice/mcafee
+    command: web
+    ports:
+      - "3994:3993"
+  comodo:
+    image: malice/comodo
+    command: web
+    ports:
+      - "3995:3993"
+  bitdefender:
+    build: container/bitdefender/
+    command: web
+    ports:
+      - "3996:3993"
+  sophos:
+    image: malice/sophos
+    command: web
+    ports:
+      - "3997:3993"
+  zoner:
+    image: malice/zoner
+    command: web
+    ports:
+      - "3998:3993"
+  clamav:
+    image: malice/clamav
+    command: web
+    ports:
+      - "3999:3993"
+  escan:
+    image: malice/escan
+    command: web
+    ports:
+      - "4000:3993"
+  drweb:
+    image: malice/drweb
+    command: web
+    ports:
+      - "4001:3993"
+  fsecure:
+    image: malice/fsecure
+    command: web
+    ports:
+      - "4002:3993"
+  kaspersky:
+    image: malice/kaspersky
+    command: web
+    ports:
+      - "4003:3993"
+  avg:
+    image: malice/avg
+    command: web
+    ports:
+      - "4004:3993"
+  yara:
+    image: malice/yara
+    command: web
+    ports:
+      - "4005:3993"
+  fprot:
+    image: malice/fprot
+    command: web
+    ports:
+      - "4006:3993"
+  pescan:
+    image: malice/pescan
+    command: web
+    ports:
+      - "4007:3993"
+  fileinfo:
+    image: malice/fileinfo
+    command: web
+    ports:
+      - "4008:3993"
+
+
+
+

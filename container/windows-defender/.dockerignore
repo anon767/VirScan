@@ -1,0 +1,19 @@
+# Ignore .git folder
+.git*
+.gitignore
+
+.circleci*
+docs*
+vendor*
+tests*
+
+README.md
+README.md.bu
+NOTES.md
+LICENSE
+Makefile
+CHANGELOG.md
+
+*.tar
+seccomp.json
+Vagrantfile

@@ -1,0 +1,87 @@
+version: '3.4'
+
+services:
+  windowsdefender:
+    build: container/windows-defender/
+    command: web
+    ports:
+      - "3993:3993"
+  mcafee:
+    build: container/mcafee/
+    command: web
+    ports:
+      - "3994:3993"
+  comodo:
+    build: container/comodo/
+    command: web
+    ports:
+      - "3995:3993"
+  bitdefender:
+    build: container/bitdefender/
+    command: web
+    ports:
+      - "3996:3993"
+  sophos:
+    image: malice/sophos/
+    command: web
+    ports:
+      - "3997:3993"
+  zoner:
+    build: container/zoner/
+    command: web
+    ports:
+      - "3998:3993"
+  clamav:
+    build: container/clamav/
+    command: web
+    ports:
+      - "3999:3993"
+  escan:
+    build: container/escan/
+    command: web
+    ports:
+      - "4000:3993"
+  drweb:
+    build: container/drweb/
+    command: web
+    ports:
+      - "4001:3993"
+  fsecure:
+    build: container/fsecure/
+    command: web
+    ports:
+      - "4002:3993"
+  kaspersky:
+    build: container/kaspersky/
+    command: web
+    ports:
+      - "4003:3993"
+  avg:
+    build: container/avg/
+    command: web
+    ports:
+      - "4004:3993"
+  yara:
+    build: container/yara/
+    command: web
+    ports:
+      - "4005:3993"
+  fprot:
+    build: container/fprot/
+    command: web
+    ports:
+      - "4006:3993"
+  pescan:
+    build: container/pescan/
+    command: web
+    ports:
+      - "4007:3993"
+  fileinfo:
+    build: container/fileinfo/
+    command: web
+    ports:
+      - "4008:3993"
+
+
+
+
