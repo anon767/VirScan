@@ -21,7 +21,7 @@ docker-compose -f docker-compose-build.yml up --build -d
 
 ## Usage
 
-E.g. to use windows-defender:
+E.g. to use windows-defender (with httpie):
 
 ```
 http -f localhost:3993/scan malware@/path/to/evil/malware
