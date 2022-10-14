@@ -8,7 +8,8 @@ LABEL malice.plugin.mime="*"
 LABEL malice.plugin.docker.engine="*"
 
 ENV YARA 3.11.0
-
+RUN apk add --no-cache tini su-exec
+RUN set -x   && echo "===> Add malice user and malware folder..."   && addgroup malice   && adduser -S -G malice malice   && mkdir /malware   && chown -R malice:malice /malware
 # Install Yara
 RUN apk --update add --no-cache openssl file bison jansson ca-certificates
 RUN apk --update add --no-cache -t .build-deps \
@@ -70,5 +71,5 @@ RUN apk --update add --no-cache -t .build-deps \
 
 WORKDIR /malware
 
-ENTRYPOINT ["su-exec","malice","scan"]
+ENTRYPOINT ["su-exec", "malice","scan"]
 CMD ["--help"]
