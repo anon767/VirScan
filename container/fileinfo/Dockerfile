@@ -30,7 +30,7 @@ RUN groupadd -r malice \
   && chown -R malice:malice /malware
 
 ENV SSDEEP 2.14.1
-ENV EXIFTOOL 12.25
+ENV EXIFTOOL 12.48
 
 RUN buildDeps='ca-certificates \
   build-essential \
