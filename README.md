@@ -13,7 +13,7 @@ To use MaliceIOs original images from the docker-hub use:
 docker-compose up -d
 ```
 
-You can also build the microservices using
+You are best advice to build the microservices to get the newest signatures
 
 ```
 docker-compose -f docker-compose-build.yml up --build -d
