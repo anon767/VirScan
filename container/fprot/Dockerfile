@@ -13,12 +13,6 @@ RUN go build -ldflags "-s -w -X main.Version=v$(cat VERSION) -X main.BuildTime=$
 ####################################################
 FROM ubuntu:bionic
 
-LABEL maintainer "https://github.com/blacktop"
-
-LABEL malice.plugin.repository = "https://github.com/malice-plugins/fprot.git"
-LABEL malice.plugin.category="av"
-LABEL malice.plugin.mime="*"
-LABEL malice.plugin.docker.engine="*"
 
 # Create a malice user and group first so the IDs get set the same way, even as
 # the rest of this may change over time.
@@ -33,9 +27,12 @@ RUN buildDeps='ca-certificates wget' \
   && apt-get install -yq $buildDeps libc6-i386 --no-install-recommends \
   && set -x \
   && echo "===> Install F-PROT..." \
-  && wget https://github.com/maliceio/malice-av/raw/master/fprot/fp-Linux.x86.32-ws.tar.gz \
+  && wget http://files.f-prot.com/files/unix-trial/fp-Linux.x86.32-ws.tar.gz \
   -O /tmp/fp-Linux.x86.32-ws.tar.gz \
   && tar -C /opt -zxvf /tmp/fp-Linux.x86.32-ws.tar.gz \
+  && apt-get install -yq libenv-path-perl --no-install-recommends 
+WORKDIR /opt/f-prot
+RUN echo y | /opt/f-prot/install-f-prot.pl \
   && ln -fs /opt/f-prot/fpscan /usr/local/bin/fpscan \
   && ln -fs /opt/f-prot/fpscand /usr/local/sbin/fpscand \
   && ln -fs /opt/f-prot/fpmon /usr/local/sbin/fpmon \
@@ -58,7 +55,7 @@ COPY --from=go_builder /bin/avscan /bin/avscan
 ADD http://www.eicar.org/download/eicar.com.txt /malware/EICAR
 
 # Update F-PROT Definitions
-RUN mkdir -p /opt/malice && /opt/f-prot/fpupdate
+RUN mkdir -p /opt/malice
 
 WORKDIR /malware
 
