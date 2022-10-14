@@ -5,6 +5,7 @@ FROM golang:1 as go_builder
 RUN apt-get update && apt-get install -y libmagic-dev libc6
 COPY . /go/src/github.com/maliceio/malice-fileinfo
 WORKDIR /go/src/github.com/maliceio/malice-fileinfo
+RUN go env -w GO111MODULE=off
 RUN go get -u github.com/golang/dep/cmd/dep
 RUN dep ensure
 RUN go build -ldflags "-s -w -X main.Version=v$(cat VERSION) -X main.BuildTime=$(date -u +%Y%m%d)" -o /bin/info
