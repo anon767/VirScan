@@ -1,4 +1,4 @@
-FROM malice/alpine
+FROM alpine:3.12
 
 LABEL maintainer "https://github.com/blacktop"
 
@@ -8,14 +8,15 @@ LABEL malice.plugin.mime="application/x-dosexec"
 LABEL malice.plugin.docker.engine="*"
 
 COPY . /usr/sbin
-RUN apk --update add --no-cache python py-setuptools py-magic
+RUN apk update && apk upgrade && apk add python3
+RUN apk --update add --no-cache py-setuptools py-magic
 RUN apk --update add --no-cache -t .build-deps \
   openssl-dev \
   build-base \
-  python-dev \
   libffi-dev \
   musl-dev \
   libc-dev \
+  python3-dev \
   py-pip \
   gcc \
   git \
