@@ -1,75 +1,46 @@
-FROM alpine:latest
+FROM alpine:3.12
 
 LABEL maintainer "https://github.com/blacktop"
 
-LABEL malice.plugin.repository = "https://github.com/malice-plugins/yara.git"
-LABEL malice.plugin.category="av"
-LABEL malice.plugin.mime="*"
+LABEL malice.plugin.repository = "https://github.com/malice-plugins/pescan.git"
+LABEL malice.plugin.category="exe"
+LABEL malice.plugin.mime="application/x-dosexec"
 LABEL malice.plugin.docker.engine="*"
 
-ENV YARA 3.11.0
+
+
+COPY . /usr/sbin
+RUN apk update && apk upgrade && apk add python3
 RUN apk add --no-cache tini su-exec
 RUN set -x   && echo "===> Add malice user and malware folder..."   && addgroup malice   && adduser -S -G malice malice   && mkdir /malware   && chown -R malice:malice /malware
-# Install Yara
-RUN apk --update add --no-cache openssl file bison jansson ca-certificates
+RUN apk --update add --no-cache py-setuptools py-magic
 RUN apk --update add --no-cache -t .build-deps \
   openssl-dev \
-  jansson-dev \
   build-base \
-  libc-dev \
-  file-dev \
-  automake \
-  autoconf \
-  libtool \
-  flex \
-  git \
-  gcc \
-  && echo "===> Install Yara from source..." \
-  && cd /tmp \
-  && git clone --recursive --branch v${YARA} https://github.com/VirusTotal/yara.git \
-  && cd /tmp/yara \
-  && ./bootstrap.sh \
-  && sync \
-  && ./configure --enable-magic \
-  --enable-cuckoo \
-  --enable-dotnet \
-  && make \
-  && make install \
-  && rm -rf /tmp/* \
-  && apk del --purge .build-deps
-
-# Install malice plugin
-COPY . /go/src/github.com/maliceio/malice-yara
-RUN apk --update add --no-cache -t .build-deps \
-  openssl-dev \
-  jansson-dev \
-  build-base \
-  mercurial \
+  libffi-dev \
   musl-dev \
-  openssl \
-  bash \
-  wget \
-  git \
+  libc-dev \
+  python3-dev \
+  py-pip \
   gcc \
-  dep \
-  go \
-  && echo "===> Building scan Go binary..." \
-  && cd /go/src/github.com/maliceio/malice-yara \
-  && echo " * copy yara rules" \
-  && mkdir /rules \
-  && mv rules /rules \
-  && export GOPATH=/go \
-  && export CGO_CFLAGS="-I/usr/local/include" \
-  && export CGO_LDFLAGS="-L/usr/local/lib -lyara" \
-  && export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig" \
-  && go version \
-  && dep ensure \
-  && go env -w GO111MODULE=off \
-  && CGO_ENABLED=1 go build -ldflags "-s -w -X main.Version=v$(cat VERSION) -X main.BuildTime=$(date -u +%Y%m%d)" -o /bin/scan \
-  && rm -rf /go /usr/local/go /usr/lib/go /tmp/* \
+  git \
+  && set -ex \
+  && echo "===> Install malice/pescan plugin..." \
+  && cd /usr/sbin \
+  && export PIP_NO_CACHE_DIR=off \
+  && export PIP_DISABLE_PIP_VERSION_CHECK=on \
+  && pip install --upgrade pip wheel \
+  && echo "\t[*] install requirements..." \
+  && pip install -U -r requirements.txt \
+  && pip list \
+  && echo "\t[*] install pescan.py..." \
+  && chmod +x pescan.py \
+  && ln -s /usr/sbin/pescan.py /usr/sbin/pescan \
+  && echo "\t[*] clean up..." \
+  && rm requirements.txt Dockerfile \
   && apk del --purge .build-deps
 
 WORKDIR /malware
 
-ENTRYPOINT ["su-exec", "malice","scan"]
+ENTRYPOINT ["su-exec","malice","/sbin/tini","--","pescan"]
 CMD ["--help"]
