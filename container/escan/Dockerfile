@@ -35,8 +35,8 @@ RUN buildDeps='wget ca-certificates gdebi' \
   && apt-get update -qq \
   && apt-get install -yq $buildDeps libc6-i386 --no-install-recommends \
   && echo "===> Install eScan AV..." \
-  && wget -q -P /tmp http://www.microworldsystems.com/download/linux/soho/deb/escan-antivirus-wks-${ESCAN}.amd64.deb \
-  && DEBIAN_FRONTEND=noninteractive gdebi -n /tmp/escan-antivirus-wks-${ESCAN}.amd64.deb \
+  && wget -q -P /tmp http://www.microworldsystems.com/download/linux/soho/deb/escan-antivirus-wks.amd64.deb \
+  && DEBIAN_FRONTEND=noninteractive gdebi -n /tmp/escan-antivirus-wks.amd64.deb \
   && echo "===> Clean up unnecessary files..." \
   && apt-get remove -y $buildDeps \
   && apt-get clean \
