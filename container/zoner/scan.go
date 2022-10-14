@@ -93,18 +93,6 @@ func AvScan(timeout int) Zoner {
 		"path":     path,
 	}).Debug("Zoner output: ", results)
 
-	if err != nil {
-		// Zoner exits with error status 11 if it finds a virus
-		if err.Error() != "exit status 11" {
-			log.WithFields(log.Fields{
-				"plugin":   name,
-				"category": category,
-				"path":     path,
-			}).Fatal(err)
-		} else {
-			err = nil
-		}
-	}
 
 	return Zoner{Results: ParseZonerOutput(results, err)}
 }
@@ -112,9 +100,6 @@ func AvScan(timeout int) Zoner {
 // ParseZonerOutput convert zoner output into ResultsData struct
 func ParseZonerOutput(zonerout string, err error) ResultsData {
 
-	if err != nil {
-		return ResultsData{Error: err.Error()}
-	}
 
 	zoner := ResultsData{Infected: false}
 
