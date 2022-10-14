@@ -1,4 +1,4 @@
-FROM malice/alpine
+FROM alpine:latest
 
 LABEL maintainer "https://github.com/blacktop"
 
@@ -7,7 +7,7 @@ LABEL malice.plugin.category="av"
 LABEL malice.plugin.mime="*"
 LABEL malice.plugin.docker.engine="*"
 
-ENV YARA 4.2.3
+ENV YARA 3.11.0
 
 # Install Yara
 RUN apk --update add --no-cache openssl file bison jansson ca-certificates
@@ -63,6 +63,7 @@ RUN apk --update add --no-cache -t .build-deps \
   && export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig" \
   && go version \
   && dep ensure \
+  && go env -w GO111MODULE=off \
   && CGO_ENABLED=1 go build -ldflags "-s -w -X main.Version=v$(cat VERSION) -X main.BuildTime=$(date -u +%Y%m%d)" -o /bin/scan \
   && rm -rf /go /usr/local/go /usr/lib/go /tmp/* \
   && apk del --purge .build-deps
