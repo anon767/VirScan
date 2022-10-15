@@ -21,11 +21,11 @@ services:
     command: web
     ports:
       - "3996:3993"
-  sophos:
-    image: malice/sophos/
-    command: web
-    ports:
-      - "3997:3993"
+  #sophos:
+  #  image: malice/sophos/
+  #  command: web
+  #  ports:
+  #    - "3997:3993"
   zoner:
     build: container/zoner/
     command: web
@@ -51,16 +51,16 @@ services:
     command: web
     ports:
       - "4002:3993"
-  kaspersky:
-    build: container/kaspersky/
-    command: web
-    ports:
-      - "4003:3993"
-  avg:
-    build: container/avg/
-    command: web
-    ports:
-      - "4004:3993"
+  #kaspersky:
+    #build: container/kaspersky/
+    #command: web
+    #    ports:
+    #  - "4003:3993"
+        #avg:
+        #build: container/avg/
+        #command: web
+        #ports:
+        #- "4004:3993"
   yara:
     build: container/yara/
     command: web
