@@ -11,7 +11,7 @@ RUN go build -ldflags "-s -w -X main.Version=v$(cat VERSION) -X main.BuildTime=$
 ####################################################
 # PLUGIN BUILDER
 ####################################################
-FROM ubuntu:bionic
+FROM ubuntu:latest
 # FROM debian:jessie
 
 
@@ -40,9 +40,13 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends ca-certifi
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN apt-get update && apt-get install -yq bitdefender-scanner
 
-# Update breaks bdscan for some reason.
+# Segfault fix
+RUN touch /opt/BitDefender-scanner/var/lib/scan/bdcore.so.linux-x86_64 \
+    && ln -fs /opt/BitDefender-scanner/var/lib/scan/bdcore.so.linux-x86_64 /opt/BitDefender-scanner/var/lib/scan/bdcore.so \
+    && echo "accept" |  bdscan --update
+
 ADD http://www.eicar.org/download/eicar.com.txt /malware/EICAR
-RUN mkdir -p /opt/malice && echo "accept" | bdscan /malware/EICAR ; exit 0
+RUN mkdir -p /opt/malice &&  bdscan /malware/EICAR ; exit 0
 
 COPY --from=go_builder /bin/avscan /bin/avscan
 
