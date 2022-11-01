@@ -148,7 +148,7 @@ $ cat JSON_OUTPUT | jq '.[][][] .Rule'
 
 ## TODO
 
-- [ ] add rules _(tagged?)_ from https://github.com/Yara-Rules/rules
+- [x] add rules _(tagged?)_ from https://github.com/Yara-Rules/rules
 - [x] add rules _(tagged?)_ from https://github.com/Neo23x0/signature-base
 
 ## Issues
