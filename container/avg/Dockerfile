@@ -30,11 +30,12 @@ RUN groupadd -r malice \
 # Install Requirements
 RUN buildDeps='ca-certificates curl' \
   && apt-get update -qq \
-  && apt-get install -yq $buildDeps libc6-i386 lib32z1 --no-install-recommends \
-  && echo "===> Install AVG..." \
-  && curl -Ls http://download.avgfree.com/filedir/inst/avg2013flx-r3118-a6926.i386.deb > /tmp/avg.deb \
-  && dpkg -i /tmp/avg.deb \
-  && /etc/init.d/avgd restart \
+  && apt-get install -yq $buildDeps libc6-i386 lib32z1 wget --no-install-recommends \
+  && echo "===> Install AVG..." 
+RUN curl -Ls https://download.avgfree.com/filedir/inst/avg2013flx-r3118-a6926.i386.deb > /tmp/avg.deb 
+RUN dpkg -i /tmp/avg.deb 
+
+RUN /etc/init.d/avgd restart \
   && avgcfgctl -w UpdateVir.sched.Task.Disabled=true \
   && avgcfgctl -w Default.setup.daemonize=false \
   && avgcfgctl -w Default.setup.features.antispam=false \

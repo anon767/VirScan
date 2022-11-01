@@ -5,6 +5,7 @@ FROM golang:1 as go_builder
 RUN apt-get update && apt-get install -y libmagic-dev libc6
 COPY . /go/src/github.com/maliceio/malice-fileinfo
 WORKDIR /go/src/github.com/maliceio/malice-fileinfo
+RUN go env -w GO111MODULE=off
 RUN go get -u github.com/golang/dep/cmd/dep
 RUN dep ensure
 RUN go build -ldflags "-s -w -X main.Version=v$(cat VERSION) -X main.BuildTime=$(date -u +%Y%m%d)" -o /bin/info
@@ -14,12 +15,6 @@ RUN go build -ldflags "-s -w -X main.Version=v$(cat VERSION) -X main.BuildTime=$
 ####################################################
 FROM ubuntu:bionic
 
-LABEL maintainer "https://github.com/blacktop"
-
-LABEL malice.plugin.repository = "https://github.com/malice-plugins/fileinfo.git"
-LABEL malice.plugin.category="metadata"
-LABEL malice.plugin.mime="*"
-LABEL malice.plugin.docker.engine="*"
 
 # Create a malice user and group first so the IDs get set the same way, even as
 # the rest of this may change over time.
@@ -29,8 +24,7 @@ RUN groupadd -r malice \
   && chown -R malice:malice /malware
 
 ENV SSDEEP 2.14.1
-ENV EXIFTOOL 12.25
-
+ENV EXIFTOOL 12.48
 RUN buildDeps='ca-certificates \
   build-essential \
   openssl \

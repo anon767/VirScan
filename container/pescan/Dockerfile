@@ -1,4 +1,4 @@
-FROM malice/alpine
+FROM alpine:3.12
 
 LABEL maintainer "https://github.com/blacktop"
 
@@ -7,15 +7,20 @@ LABEL malice.plugin.category="exe"
 LABEL malice.plugin.mime="application/x-dosexec"
 LABEL malice.plugin.docker.engine="*"
 
+
+
 COPY . /usr/sbin
-RUN apk --update add --no-cache python py-setuptools py-magic
+RUN apk update && apk upgrade && apk add python3
+RUN apk add --no-cache tini su-exec
+RUN set -x   && echo "===> Add malice user and malware folder..."   && addgroup malice   && adduser -S -G malice malice   && mkdir /malware   && chown -R malice:malice /malware
+RUN apk --update add --no-cache py-setuptools py-magic
 RUN apk --update add --no-cache -t .build-deps \
   openssl-dev \
   build-base \
-  python-dev \
   libffi-dev \
   musl-dev \
   libc-dev \
+  python3-dev \
   py-pip \
   gcc \
   git \
